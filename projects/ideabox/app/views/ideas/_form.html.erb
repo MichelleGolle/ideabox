@@ -1,0 +1,6 @@
+<%= form_for(@idea) do |f| %>
+  <%= f.text_field :title, placeholder: "Title" %>
+  <%= f.text_field :description, placeholder: "Description" %>
+  <%= f.collection_check_boxes(:category_ids, @categories, :id, :name) %>
+  <%= f.submit %>
+<% end %>

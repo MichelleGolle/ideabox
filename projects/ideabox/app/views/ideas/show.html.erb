@@ -1,0 +1,8 @@
+<h1> <%= @idea.title %> </h1>
+<p> <%= @idea.description %> </p>
+<% @idea.categories.each do |category| %>
+  <%= category.name %>
+<% end %><br>
+<%= link_to "Back to my user page", user_path(current_user) %>
+<%= link_to "Edit", edit_idea_path %>
+<%= link_to "Delete", idea_path(@idea), method: "delete"  %>
