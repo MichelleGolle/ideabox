@@ -1,0 +1,5 @@
+<% @images.each do |image| %>
+  <img src=<%= image.url %> height="100" width="125"><br>
+  <%= link_to "edit", edit_admin_image_path(image) %>
+  <%= link_to "delete", admin_image_path(image), method: "delete" %>
+<% end %>
