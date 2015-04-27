@@ -1,7 +1,7 @@
 <%= form_for(@idea) do |f| %>
-  <%= f.text_field :title, placeholder: "Title" %>
-  <%= f.text_field :description, placeholder: "Description" %>
-  <%= f.collection_check_boxes(:category_ids, @categories, :id, :name) %>
-  <%= f.collection_check_boxes(:image_ids, @images, :id, :description) %>
+  <%= f.text_field :title, placeholder: "Title" %><br>
+  <%= f.text_field :description, placeholder: "Description" %><br>
+  Categories: <%= f.collection_check_boxes(:category_ids, @categories, :id, :name) %><br>
+  Images: <%= f.collection_check_boxes(:image_ids, @images, :id, :description) %><br>
   <%= f.submit %>
 <% end %>

@@ -1,11 +1,11 @@
-<%= link_to "Create a new idea!", new_idea_path %>
+<br><%= link_to "Create a new idea!", new_idea_path %><br>
 
-<h1>Ideas: </h1>
+<h1>My Ideas: </h1>
 
 <% @ideas.each do |idea| %>
   <%= link_to idea.title, idea_path(idea) %><br>
   description: <%= idea.description %> <br>
-  <%= link_to "Edit", edit_idea_path(idea) %>
+  <%= link_to "Edit", edit_idea_path(idea) %><br>
   <%= link_to "Delete", idea_path(idea), method: "delete"  %>
 
 <% end %>
