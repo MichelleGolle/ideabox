@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "User adds category to idea" do
+RSpec.describe "User adds image to idea" do
   context "with valid attributes" do
 
-    it "saves and displays the idea category" do
+    it "saves and displays the idea image" do
 
       User.create(first_name: "admin",
                   last_name: "admin",
@@ -17,12 +17,13 @@ RSpec.describe "User adds category to idea" do
       fill_in "Password", with: "password"
       click_button "Login"
 
-      visit new_admin_category_path
-      click_link_or_button "Create Category"
+      visit new_admin_image_path
+      click_link_or_button "Create Image"
 
-      fill_in "Name", with: "Brilliant"
+      fill_in "Image URL", with: "http://i.huffpost.com/gen/2364914/images/o-GRUMPY-CAT-facebook.jpg"
+      fill_in "Description", with: "Grumpy Cat"
 
-      click_link_or_button "Create Category"
+      click_link_or_button "Create Image"
 
       click_link "Logout"
 
@@ -47,12 +48,12 @@ RSpec.describe "User adds category to idea" do
 
       fill_in "idea[title]", with: "My Idea"
       fill_in "idea[description]", with: "A Description"
-      check 'Brilliant'
+      check "Grumpy Cat"
       click_link_or_button "Create Idea"
 
       expect(page).to have_content('My Idea')
       expect(page).to have_content('A Description')
-      expect(page).to have_content('Brilliant')
+      expect(page).to have_css("img[src*='http://i.huffpost.com/gen/2364914/images/o-GRUMPY-CAT-facebook.jpg']")
     end
 
   end

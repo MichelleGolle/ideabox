@@ -20,11 +20,11 @@ class Admin::ImagesController < Admin::BaseController
   end
 
   def edit
-    @image = image.find(params[:id])
+    @image = Image.find(params[:id])
   end
 
   def update
-    @image = image.find(params[:id])
+    @image = Image.find(params[:id])
     if @image.update(image_params)
       flash[:notice] = "image has been updated!"
       redirect_to admin_images_path
@@ -35,7 +35,7 @@ class Admin::ImagesController < Admin::BaseController
   end
 
   def destroy
-    @image = image.find(params[:id])
+    @image = Image.find(params[:id])
     @image.destroy
     redirect_to admin_images_path
   end
@@ -44,7 +44,7 @@ class Admin::ImagesController < Admin::BaseController
   private
 
   def image_params
-    params.require(:image).permit(:url)
+    params.require(:image).permit(:url, :description)
   end
 
 

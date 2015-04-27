@@ -3,6 +3,7 @@ class IdeasController < ApplicationController
   def new
     @idea = current_user.ideas.new
     @categories = Category.all
+    @images = Image.all
   end
 
   def index
@@ -12,9 +13,11 @@ class IdeasController < ApplicationController
   def create
     @idea = current_user.ideas.new(idea_params)
     categories = params[:idea][:category_ids].reject(&:empty?)
+    images = params[:idea][:image_ids].reject(&:empty?)
     if @idea.save
       flash[:notice] = "Idea created!"
       categories.each { |category| @idea.categories << Category.find(category) }
+      images.each { |image| @idea.images << Image.find(image) }
       redirect_to idea_path(@idea)
     else
       flash[:error] = "Invalid entry"
@@ -29,14 +32,18 @@ class IdeasController < ApplicationController
   def edit
       @idea = current_user.ideas.find(params[:id])
       @categories = Category.all
+      @images = Image.all
     end
 
     def update
       @idea = current_user.ideas.find(params[:id])
       categories = params[:idea][:category_ids].reject(&:empty?)
+      images = params[:idea][:image_ids].reject(&:empty?)
       if @idea.update(idea_params)
         @idea.categories.destroy_all
+        @idea.images.destroy_all
         categories.each { |category| @idea.categories << Category.find(category) }
+        images.each { |image| @idea.images << Image.find(image) }
         redirect_to idea_path(@idea)
       else
         render :edit

@@ -3,6 +3,9 @@
 <% @idea.categories.each do |category| %>
   <%= category.name %>
 <% end %><br>
+<% @idea.images.each do |image| %>
+  <img src=<%= image.url %> height="100" width="125">
+<% end %><br>
 <%= link_to "Back to my user page", user_path(current_user) %>
 <%= link_to "Edit", edit_idea_path %>
 <%= link_to "Delete", idea_path(@idea), method: "delete"  %>

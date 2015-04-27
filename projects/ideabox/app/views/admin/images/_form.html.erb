@@ -1,4 +1,5 @@
 <%= form_for [:admin, @image] do |f| %>
   <%= f.text_field :url, placeholder: "Image URL" %>
+  <%= f.text_field :description, placeholder: "Description" %>
   <%= f.submit %>
 <% end %>
